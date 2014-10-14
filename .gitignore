@@ -1,0 +1,12 @@
+# ignore PyCharm files
+.idea
+
+# ignore .pyc files
+*.pyc
+
+# don't include third-party dependencies.
+lib/
+!lib/README.md
+
+# ignore the ds_store files from mac systems
+.DS_Store
