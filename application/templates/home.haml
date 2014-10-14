@@ -3,12 +3,10 @@
 {% block content %}
 %h1
   Hello world!
-
-%p
-  You can download the code for this project from the following places:
-  %ul
-    %li
-      %a(href='https://github.com/iandouglas/flask-gae-skeleton') GitHub
-    %li
-      %a(href='https://bitbucket.org/iandouglas/flask-gae-skeleton') BitBucket
+{% endblock %}
+{% block submenu %}
+%li
+  %a(href='https://github.com/iandouglas/flask-gae-skeleton') GitHub
+%li
+  %a(href='https://bitbucket.org/iandouglas/flask-gae-skeleton') BitBucket
 {% endblock %}

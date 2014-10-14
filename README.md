@@ -25,10 +25,10 @@ myproject/bin/activate
 myproject\scripts\activate
 
 # install all requirements into your virtualenv
-pip install -r requirements
+pip install -r requirements.txt
 
 # install all requirements into your /lib/ folder as well, but only the packages
-pip install -r requirements -t lib
+pip install -r requirements.txt -t lib
 ```
 
 ## app.yaml
