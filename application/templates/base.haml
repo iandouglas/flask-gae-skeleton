@@ -29,10 +29,6 @@
       %ul
         %li
           %a(href='/') home
-        %li
-          %a(href='/resume') resume
-        %li
-          %a(href='/headhunters') headhunter nightmares
         {% block submenu %}{% endblock %}
 
     .body-content
@@ -43,8 +39,6 @@
       %ul
         %li
           %a(href='/privacy') privacy
-        %li
-          %a(href='/credits') credits
       .copyright
         {% block footer %}copyright &copy; 1996-{{ moment().format('YYYY') }} ian douglas{% endblock %}
 
