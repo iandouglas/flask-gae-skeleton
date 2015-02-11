@@ -1,4 +1,4 @@
-application: unique-name
+application: your-unique-project-name-here
 version: 1
 runtime: python27
 api_version: 1
@@ -26,6 +26,7 @@ skip_files:
 - ^(.*/)?.*\.scss
 - ^(.*/)?.*\.less
 - ^/docs*
+- ^/tests*
 
 libraries:
 - name: jinja2

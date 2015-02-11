@@ -6,7 +6,7 @@ from application import create_app
 from application.routes import create_routes
 
 
-class FlaskClientTestCase(unittest.TestCase):
+class FlaskClient(unittest.TestCase):
     def setUp(self):
         self.tb = testbed.Testbed()
         self.tb.activate()
@@ -27,7 +27,7 @@ class FlaskClientTestCase(unittest.TestCase):
         self.assertIsNotNone(self.app.url_map)
 
         rule_count = 0
-        expected_static_endpoints = 3
+        expected_static_endpoints = 5
 
         for _ in self.app.url_map.iter_rules():
             rule_count += 1
@@ -36,5 +36,7 @@ class FlaskClientTestCase(unittest.TestCase):
     def test_404(self):
         response = self.client.get('/%s' % uuid.uuid4())
         self.assertEqual(response.status_code, 404)
+
+    def test_static_route_for_404(self):
         response = self.client.get('/404')
         self.assertEqual(response.status_code, 404)
