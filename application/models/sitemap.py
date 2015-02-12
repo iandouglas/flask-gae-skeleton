@@ -1,6 +1,5 @@
 # coding: utf-8
 from google.appengine.ext import db
-from application.models import CustomModel
 
 
 class SitemapContent(db.Model):
@@ -18,4 +17,3 @@ class SitemapContent(db.Model):
     created_by = db.UserProperty(auto_current_user_add=True)
     modified = db.DateTimeProperty(auto_now=True)
     modified_by = db.UserProperty(auto_current_user=True)
-
