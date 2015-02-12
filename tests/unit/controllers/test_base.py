@@ -26,7 +26,6 @@ class BaseSite(unittest.TestCase):
         self.assertIn('Ian at Twitter', resp.data)
 
         self.assertIn('home', resp.data)
-        self.assertIn('resume', resp.data)
         self.assertIn('ramblings and musings of a senior webdev', resp.data)
 
         self.assertIn('privacy', resp.data)
