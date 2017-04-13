@@ -10,3 +10,6 @@ lib/
 
 # ignore the ds_store files from mac systems
 .DS_Store
+
+# ignore the credentials file for google app engine
+client-secret.json

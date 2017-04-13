@@ -1,0 +1,26 @@
+# Use Dockerized infrastructure
+sudo: false
+language: python
+before_install:
+  # Decrypt the credentials we added to the repo using the key we added with the Travis command line tool
+  - openssl aes-256-cbc -K $encrypted_3a75846c8fd3_key -iv $encrypted_3a75846c8fd3_iv -in client-secret.json.enc -out client-secret.json -d
+client-secret:
+  json:
+    secure: EMBfrZWQ2+UpVvL3c2GNXn+aAjIJg3C8dkCXUbBQ6CKuceEy/UwtCW2SX1xyrf8xH+NBAKpRAVkvdRJP9SOWgxxnit+bNM0JCM8i/WP8+m0hHF3NfBbvdfXTxIOGUFTGttdnABcN3HAFDjdoezKuBEcYpt7tE5bQVfTBac6CypXsfUunpaGh0CYXleQZ0ZhsHEv280e50C6fOhMhzEpHlupfUn4Ka3uLpxqez0M0a4IkkuBCzS5ij+fAPK0Kc95UghRLwFuXV3eSLDKVu/xsw9YOtyIj6LYar3u3vjM5kMvPy2SXFMM10SGjvdIfgf1y1lVdTAAcTC9ErY4brG9eFP6zOuTTWeqKWxdPQD5SiTijnlnInUvKz+KbNfPtJGJm7QGktPc4mgTSEhNXrVR1y91Pjj64UzG7heignPJDcNvb0QG95ibgQbAMSIu3citglHe3+2dp2ElRb1GswtMJfPQU3k3Qnceo9nutnA4v7ruxYJMBwkKptoHBDO2euLp4ISh046kJLvjk6jR8sMPVXD0k18zskDs61VNMHmXdJuG4894ecl0aoi5lfA8g9j/gamBWdlcwrM+qUvTVAp4I4iYSfjdnyPcVHyl3aVvxXc+mkz0NhZaneDy79zF+q2E4NprF5fxeRqvu77x1dbgCtNGFjrny967sbTfIFE0GC/k=
+install:
+  # Install the Python dependencies
+  - pip install -r requirements.txt -t lib/
+script:
+  - python run_tests.py
+
+# [START travis_deploy]
+deploy:
+  provider: gae
+  # Skip cleanup so api_key.py and vendored dependencies are still there
+  skip_cleanup: true
+  keyfile: client-secret.json
+  project: boulder-python
+  default: true
+  on:
+    all_branches: true
+# [END travis_deploy]

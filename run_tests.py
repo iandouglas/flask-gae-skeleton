@@ -3,6 +3,9 @@ from __future__ import print_function
 import sys
 import os
 import unittest
+# noinspection PyUnresolvedReferences
+import appengine_config
+
 
 sdk_base_path = os.environ.get('GOOGLE_APP_ENGINE_SDK')
 
