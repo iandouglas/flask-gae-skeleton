@@ -5,7 +5,7 @@ cache:
     - "$HOME/google-cloud-sdk/"
 env:
   # Make sure gcloud command is on our PATH and the App Engine SDK is in the Python path
-  - GOOGLE_APP_ENGINE_SDK=${HOME}/.cache/google_appengine PATH=$PATH:${HOME}/google-cloud-sdk/bin PYTHONPATH=${PYTHONPATH}:${GOOGLE_APP_ENGINE_SDK} CLOUDSDK_CORE_DISABLE_PROMPTS=1
+  - GOOGLE_APP_ENGINE_SDK=${HOME}/google-cloud-sdk PATH=$PATH:${HOME}/google-cloud-sdk/bin PYTHONPATH=${PYTHONPATH}:${GOOGLE_APP_ENGINE_SDK} CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
   # If the SDK is not already cached, download it and unpack it
   - rm -rf $HOME/google-cloud-sdk
@@ -26,4 +26,4 @@ script:
   # Run the unit tests
   - python run_tests.py
   # Deploy the app
-  - gcloud -q preview app deploy app.yaml --promote
+  - gcloud -q app deploy app.yaml --promote
