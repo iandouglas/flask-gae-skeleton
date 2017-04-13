@@ -62,9 +62,20 @@ Please consider developing your project using TDD principles, it will make your 
 I've already got you started with a test-driven setup under /tests/ which will test that Flask starts up
 properly, and also tests static pages such as the 404 page. I've also added integration tests using Splinter.
 
-It's quite easy to run the tests within PyCharm (my editor of choice), I'll update the docs on how to run the tests
-from the command line once I figure it out myself. :)
+You can easily run the tests within PyCharm (my editor of choice), or you can run them from the command line:
 
+```python run_tests.py```
+
+The tests require access to the Google App Engine SDK.  You can specify the location of your installed SDK with an
+environment variable:
+
+Linux / MacOS:
+
+```export GOOGLE_APP_ENGINE_SDK=asdf```
+
+Windows:
+
+```set GOOGLE_APP_ENGINE_SDK=C:\Program Files\Google\App Engine```
 
 ## What are the .haml files and .scss? Do I really need them?
 
