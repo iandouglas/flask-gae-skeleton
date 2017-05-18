@@ -9,13 +9,25 @@ project from which I could get started quickly.
 I'll be tweaking this over time. It's not perfect and there's still a lot I want to add, such as Javascript testing.
 
 
+## Google SDK Requirements
+
+You'll need to install the Google Cloud SDK and the app-engine-python component:
+
+```bash
+# Install the Google Cloud SDK
+curl https://sdk.cloud.google.com | bash
+
+# Install the Python App Engine component
+gcloud components install app-engine-python
+```
+
 ## virtualenv
 
 I recommend installing an actual virtualenv for your project, but App Engine will also need your external packages
 installed in the /lib/ folder here. Remember that App Engine can only support 100% Python packages. Anything that
 compiles a C/C++ library cannot be used on GAE.
 
-```
+```bash
 virtualenv myproject
 
 # linux/mac:
@@ -46,13 +58,14 @@ strings together. I've got code in config.py right now that should alert you via
 but this is untested at the moment. I recommend using SendGrid, though you'll want to use their web API instead of SMTP
 access, as App Engine gives you several hundred thousand web API calls to third party services per day as part of their
 quota, but their low-level socket connections may be more limited. SendGrid is a Google Cloud Platform partner, and
-also my employer.
+also my former employer.
 
 You should also change the Google Analytics ID configuration setting if you want to gather data about who visits your
 site and generate reports, etc..
 
 You could inherit the AppConfig class and override certain settings for default (development), testing, and production
 modes.
+
 
 
 ## tests
@@ -71,7 +84,7 @@ environment variable:
 
 Linux / MacOS:
 
-```export GOOGLE_APP_ENGINE_SDK=asdf```
+```export GOOGLE_APP_ENGINE_SDK=${HOME}/google-cloud-sdk```
 
 Windows:
 
@@ -95,4 +108,14 @@ The .haml and .scss files are ignored via the app.yaml file so they won't end up
 
 ## How do I deploy to App Engine?
 
-appcfg.py update .
+`gcloud app deploy app.yaml --promote`
+
+
+## What about Continuous Integration?
+
+The [.travis.yml](.travis.yml) file contains a standard TravisCI configuration that includes
+installing all prerequisites, running the unit tests via `run_tests.py`, and deploying to GAE.
+
+You will need a Service Account for your App Engine project to do auto deployments like this.
+The account will require the "App Engine Deployer", "App Engine Service Admin" and "Storage Object
+Admin" roles.
