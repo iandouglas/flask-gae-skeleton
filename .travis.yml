@@ -22,8 +22,10 @@ install:
   - pip install -r requirements.txt -t lib/
   - gcloud config set project boulder-python
   - gcloud -q components update gae-python
+  - gcloud -q components install app-engine-python
 script:
   # Run the unit tests
   - python run_tests.py
+after_success:
   # Deploy the app
   - gcloud -q app deploy app.yaml --promote
