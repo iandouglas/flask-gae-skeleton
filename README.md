@@ -1,5 +1,7 @@
 # Flask GAE Skeleton
 
+[![Build Status](https://travis-ci.org/iandouglas/flask-gae-skeleton.svg?branch=master)](https://travis-ci.org/iandouglas/flask-gae-skeleton)
+
 I often find myself starting new projects all the time with Python/Flask for Google App Engine, and wanted a skeleton
 project from which I could get started quickly.
 
@@ -119,3 +121,10 @@ installing all prerequisites, running the unit tests via `run_tests.py`, and dep
 You will need a Service Account for your App Engine project to do auto deployments like this.
 The account will require the "App Engine Deployer", "App Engine Service Admin" and "Storage Object
 Admin" roles.
+
+You can add a TravisCI Status Indicator to your README.md with the following markdown replacing
+`<my-github-username>` and `<my-travis-project-name>` with appropriate values:
+
+```
+[![Build Status](https://travis-ci.org/<my-github-username>/<my-travis-project-name>.svg?branch=master)](https://travis-ci.org/<my-github-username>/<my-travis-project-name>)
+```
