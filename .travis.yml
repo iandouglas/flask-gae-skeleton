@@ -1,0 +1,31 @@
+language: python
+# Cache our Gcloud SDK between commands
+cache:
+  directories:
+    - "$HOME/google-cloud-sdk/"
+env:
+  # Make sure gcloud command is on our PATH and the App Engine SDK is in the Python path
+  - GOOGLE_APP_ENGINE_SDK=${HOME}/google-cloud-sdk PATH=$PATH:${HOME}/google-cloud-sdk/bin PYTHONPATH=${PYTHONPATH}:${GOOGLE_APP_ENGINE_SDK} CLOUDSDK_CORE_DISABLE_PROMPTS=1
+before_install:
+  # If the SDK is not already cached, download it and unpack it
+  - rm -rf $HOME/google-cloud-sdk
+  - curl https://sdk.cloud.google.com | bash;
+  # Decrypt the credentials we added to the repo using the key we added with the Travis command line tool
+  - openssl aes-256-cbc -K $encrypted_3a75846c8fd3_key -iv $encrypted_3a75846c8fd3_iv -in client-secret.json.enc -out client-secret.json -d
+  # Here we use the decrypted service account credentials to authenticate the command line tool
+  - gcloud auth activate-service-account --key-file client-secret.json
+client-secret:
+  json:
+    secure: EMBfrZWQ2+UpVvL3c2GNXn+aAjIJg3C8dkCXUbBQ6CKuceEy/UwtCW2SX1xyrf8xH+NBAKpRAVkvdRJP9SOWgxxnit+bNM0JCM8i/WP8+m0hHF3NfBbvdfXTxIOGUFTGttdnABcN3HAFDjdoezKuBEcYpt7tE5bQVfTBac6CypXsfUunpaGh0CYXleQZ0ZhsHEv280e50C6fOhMhzEpHlupfUn4Ka3uLpxqez0M0a4IkkuBCzS5ij+fAPK0Kc95UghRLwFuXV3eSLDKVu/xsw9YOtyIj6LYar3u3vjM5kMvPy2SXFMM10SGjvdIfgf1y1lVdTAAcTC9ErY4brG9eFP6zOuTTWeqKWxdPQD5SiTijnlnInUvKz+KbNfPtJGJm7QGktPc4mgTSEhNXrVR1y91Pjj64UzG7heignPJDcNvb0QG95ibgQbAMSIu3citglHe3+2dp2ElRb1GswtMJfPQU3k3Qnceo9nutnA4v7ruxYJMBwkKptoHBDO2euLp4ISh046kJLvjk6jR8sMPVXD0k18zskDs61VNMHmXdJuG4894ecl0aoi5lfA8g9j/gamBWdlcwrM+qUvTVAp4I4iYSfjdnyPcVHyl3aVvxXc+mkz0NhZaneDy79zF+q2E4NprF5fxeRqvu77x1dbgCtNGFjrny967sbTfIFE0GC/k=
+install:
+  # Install the Python dependencies
+  - pip install -r requirements.txt -t lib/
+  - gcloud config set project boulder-python
+  - gcloud -q components update gae-python
+  - gcloud -q components install app-engine-python
+script:
+  # Run the unit tests
+  - python run_tests.py
+after_success:
+  # Deploy the app
+  - gcloud -q app deploy app.yaml --promote
