@@ -5,9 +5,9 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  background-color: #F8F8F8;
-  color: #222;
-  font-family: "Abel", "Arial Narrow", Verdana, sans-serif;
+  background-color: #f8f8f8;
+  color: #222222;
+  font-family: "Arial Narrow", Verdana, sans-serif;
   font-weight: 400;
   overflow-y: scroll; }
 
@@ -19,7 +19,7 @@ footer {
   padding: 10px 0 6px;
   z-index: 3000;
   text-align: center;
-  background: #5690DC;
+  background: #5690dc;
   white-space: nowrap;
   overflow: hidden; }
 
@@ -30,7 +30,7 @@ header {
   padding: 10px 0 6px;
   z-index: 3000;
   text-align: center;
-  background: #5690DC;
+  background: #5690dc;
   white-space: nowrap;
   overflow: hidden; }
   header h1 {
@@ -56,7 +56,7 @@ ul {
   height: 40px;
   text-align: center;
   background-color: #111;
-  font-family: "Abel", "Arial Narrow", Verdana, sans-serif;
+  font-family: "Arial Narrow", Verdana, sans-serif;
   color: white;
   white-space: nowrap;
   overflow: hidden; }
@@ -75,7 +75,7 @@ ul {
 
 .button {
   border: none;
-  background: #5690DC;
+  background: #5690dc;
   padding: 8px 16px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
