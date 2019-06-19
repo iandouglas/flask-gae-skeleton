@@ -5,30 +5,44 @@
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %title {% block title%}Flask GAE Skeleton{% endblock %}
-    %link(rel='stylesheet' href='/css/main.css')
+    %link(href="/css/main.css" rel="stylesheet")
+
   %body
     %header
-      %h1 Flask GAE Skeleton
-      %h4 Get your Flask project started!
+      %h1 iandouglas.com
+      %ul.nav-social
+        %li
+          %a(href="http://plus.google.com/+IanDouglas" title="Ian at Google+")
+            %img(src="/img/google-plus-4-32.png" height=28 width=28)
+        %li
+          %a(href="http://github.com/iandouglas" title="Ian at GitHub")
+            %img(src="/img/github-9-32.png" height=28 width=28)
+        %li
+          %a(href="http://linkedin.com/in/iandouglas736" title="Ian at LinkedIn")
+            %img(src="/img/linkedin-4-32.png" height=28 width=28)
+        %li
+          %a(href="http://twitter.com/iandouglas736" title="Ian at Twitter")
+            %img(src="/img/twitter-4-32.png" height=28 width=28)
 
     .submenu
       %ul
         %li
-          Need help?
-          %a(href='https://plus.google.com/+IanDouglas') Contact author on Google+
-        %li(style='width:50px;') &nbsp;
-        %li
-          This project is Open Source
-        %li(style='width:50px;') &nbsp;
+          %a(href='/') home
         {% block submenu %}{% endblock %}
 
     .body-content
       {% block content %}{% endblock %}
 
+    .spacer
     %footer
-      {% block footer %}copyright &copy; 2014 ian douglas{% endblock %}
+      %ul
+        %li
+          %a(href='/privacy') privacy
+      .copyright
+        {% block footer %}copyright &copy; 1996-{{ moment().format('YYYY') }} ian douglas{% endblock %}
 
-    %script(async src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
     %script
       :plain
       -#var cb = function() {
@@ -43,6 +57,5 @@
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-142829-33', 'auto');
+      ga('create', '{{ config['GOOGLE_ANALYTICS_ID'] }}', 'auto');
       ga('send', 'pageview');
-

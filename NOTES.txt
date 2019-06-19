@@ -1,0 +1,6 @@
+To do list:
+
+
+Dynamic sitemap
+http://blog.notdot.net/2009/10/Blogging-on-App-engine-part-9-Sitemaps-and-review
+    - only index pages into the sitemap which are meant to be fully public

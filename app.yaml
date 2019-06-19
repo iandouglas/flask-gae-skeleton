@@ -28,6 +28,7 @@ skip_files:
 - ^(.*/)?.*\.scss
 - ^(.*/)?.*\.less
 - ^/docs*
+- ^/tests*
 
 libraries:
 - name: jinja2

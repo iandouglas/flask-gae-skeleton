@@ -1,3 +1,4 @@
+# coding=utf-8
 from flask import Flask
 from flask.ext.moment import Moment
 from flask_cache import Cache

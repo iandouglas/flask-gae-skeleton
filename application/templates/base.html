@@ -9,32 +9,63 @@
   </head>
   <body>
     <header>
-      <h1>Flask GAE Skeleton</h1>
-      <h4>Get your Flask project started!</h4>
+      <h1>iandouglas.com</h1>
+      <ul class='nav-social'>
+        <li>
+          <a href='http://plus.google.com/+IanDouglas' title='Ian at Google+'>
+            <img height='28' src='/img/google-plus-4-32.png' width='28'>
+          </a>
+        </li>
+        <li>
+          <a href='http://github.com/iandouglas' title='Ian at GitHub'>
+            <img height='28' src='/img/github-9-32.png' width='28'>
+          </a>
+        </li>
+        <li>
+          <a href='http://linkedin.com/in/iandouglas736' title='Ian at LinkedIn'>
+            <img height='28' src='/img/linkedin-4-32.png' width='28'>
+          </a>
+        </li>
+        <li>
+          <a href='http://twitter.com/iandouglas736' title='Ian at Twitter'>
+            <img height='28' src='/img/twitter-4-32.png' width='28'>
+          </a>
+        </li>
+      </ul>
     </header>
     <div class='submenu'>
       <ul>
         <li>
-          Need help?
-          <a href='https://plus.google.com/+IanDouglas'>Contact author on Google+</a>
+          <a href='/'>home</a>
         </li>
-        <li style='width:50px;'>&nbsp;</li>
-        <li>
-          This project is Open Source
-        </li>
-        <li style='width:50px;'>&nbsp;</li>
         {% block submenu %}{% endblock %}
       </ul>
     </div>
     <div class='body-content'>
       {% block content %}{% endblock %}
     </div>
+    <div class='spacer'></div>
     <footer>
-      {% block footer %}copyright &copy; 2014 ian douglas{% endblock %}
+      <ul>
+        <li>
+          <a href='/privacy'>privacy</a>
+        </li>
+      </ul>
+      <div class='copyright'>
+        {% block footer %}copyright &copy; 1996-{{ moment().format('YYYY') }} ian douglas{% endblock %}
+      </div>
     </footer>
-    <script async src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
     <script>
       
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', '{{ config['GOOGLE_ANALYTICS_ID'] }}', 'auto');
+      ga('send', 'pageview');
     </script>
   </body>
 </html>
